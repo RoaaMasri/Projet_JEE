@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Créer un nouvel événement</title>
+</head>
+<body>
+<div align="center">
+    <h1>Créer un nouvel événement</h1>
+    <br />
+    <form action="#" th:action="@{/save}" th:object="${evenement}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Titre :</td>
+                <td><input type="text" th:field="*{titre}" /></td>
+            </tr>
+            <tr>
+                <td>Theme :</td>
+                <td><input type="text" th:field="*{theme}" /></td>
+            </tr>
+            <tr>
+                <td>Date de debut :</td>
+                <td><input type="text" th:field="*{date_debut}" /></td>
+            </tr>
+            <tr>
+                <td>Durée :</td>
+                <td><input type="text" th:field="*{duree}" /></td>
+            </tr>
+            <tr>
+                <td>Nombre maximum de participants :</td>
+                <td><input type="text" th:field="*{nb_part_max}" /></td>
+            </tr>
+            <tr>
+                <td>Description :</td>
+                <td><input type="text" th:field="*{description}" /></td>
+            </tr>
+            <tr>
+                <td>Organisateur :</td>
+                <td><input type="text" th:field="*{organisateur}" /></td>
+            </tr>
+            <tr>
+                <td>Type d'événement :</td>
+                <td><input type="text" th:field="*{type_even}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Save</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
