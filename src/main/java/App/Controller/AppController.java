@@ -5,6 +5,8 @@ import App.Model.Participant;
 import App.Service.EventService;
 import App.Service.ParticService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 public class AppController {
 
     @Autowired
@@ -26,6 +29,11 @@ public class AppController {
 
 
     //Home Page
+    @RequestMapping(" ")
+    public String homePage(Model model) {
+        return "index";
+    }
+
     @RequestMapping("/")
     public String viewHomePage(Model model) {
         return "index";
@@ -37,7 +45,6 @@ public class AppController {
     public String viewEventHomePage(Model model) {
         List<Evenement> listEvents = service.listAll();
         model.addAttribute("listEvents", listEvents);
-
         return "event_page";
     }
 
@@ -84,9 +91,10 @@ public class AppController {
 
     @RequestMapping("/new_participant")
     public String showNewParticipantPage(Model model) {
+        List<Evenement> listOfEvents = service.listAll();
         Participant participant = new Participant();
         model.addAttribute("participant", participant);
-
+        model.addAttribute("listOfEvents", listOfEvents);
         return "new_participant";
     }
 
@@ -95,8 +103,15 @@ public class AppController {
         pservice.save(participant);
         return "redirect:/participant";
     }
+
+    @RequestMapping("/participant/delete/{id}")
+    public String deletePartic(@PathVariable(name = "id") long id) {
+        pservice.delete(id);
+        return "redirect:/participant";
+    }
+
 /*
-    @RequestMapping("/edit_participant/{id}")
+    @RequestMapping("/participant/edit/{id}")
     public ModelAndView showEditParticPage(@PathVariable(name = "id") long id) {
         ModelAndView mav = new ModelAndView("edit_participant");
         Participant participant = pservice.get(id);
@@ -104,12 +119,7 @@ public class AppController {
 
         return mav;
     }
+*/
 
-    @RequestMapping("/delete_participant/{id}")
-    public String deletePartic(@PathVariable(name = "id") long id) {
-        pservice.delete(id);
-        return "redirect:/participant";
-    }
 
- */
 }

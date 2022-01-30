@@ -72,39 +72,46 @@
 <div align="center">
     <h1>Créer un nouvel participant</h1>
     <br />
-    <form action="#" th:action="@{/save_participant}" th:object="${participant}"
-          method="post">
-
-        <label>Participant Nom  :</label>
-        <input type="text" id="nom" name="nom" required>
-
+    <form th:action="@{/save_participant}" th:object="${participant}" method="post">
+    <div>
+        <label>Participant Nom :</label>
+        <input type="text" id="nom" th:field="*{nom}" required>
+    </div>
+    <div>
         <label>Participant Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required>
-
+        <input type="text" id="prenom" th:field="*{prenom}" required>
+    </div>
+    <div>
         <label>Email :</label>
-        <input type="email" id="email" name="email" required>
-
+        <input type="email" id="email" th:field="*{email}" required>
+    </div>
+    <div>
         <label>Date de naissance :</label>
-        <input type="text" id="date_naiss" name="date_naiss" required>
-
+        <input type="text" id="date_naiss" th:field="*{date_naiss}" required>
+    </div>
+    <div>
         <label>Organisation  :</label>
-        <input type="text" id="organisation" name="organisation" >
-
+        <input type="text" id="organisation" th:field="*{organisation}" >
+    </div>
+    <div>
         <label>Observations :</label>
-        <input type="text" id="observations" name="observation" >
+        <input type="text" id="observations" th:field="*{observations}" >
+    </div>
 
+    <div>
         <label>Evenement:</label>
-        <select name="event" th:action="@{/event}" th:object="${evenement}"
-                method="get">
-            <script>
-                for (let i = 0; i < "listEvents".length; i++) {
-                text += cars[i] + "<br>";
-                }
-            </script>
-        </select>
-
-        //click to submit
+        <div>
+            <select type="text" id="evenement" th:field="*{evenement}" required>
+               <block th:each="event : ${listOfEvents}">
+                   <option th:text="${event.titre}" th:value="${event.id}"/>
+               </block>
+            </select>
+        </div>
+    </div>
+        &nbsp;&nbsp;&nbsp;
+    <div>
         <button type="submit">Save</button>
+    </div>
     </form>
 </div>
 </body>

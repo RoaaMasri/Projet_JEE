@@ -33,18 +33,18 @@
             <td th:text=${participant.id}> Participant ID </td>
             <td th:text=${participant.nom}> Participant Nom </td>
             <td th:text=${participant.prenom}> Participant Prénom </td>
-            <td th:text=${participant.mail}> Email </td>
+            <td th:text=${participant.email}> Email </td>
             <td th:text=${participant.date_naiss}> Date de naissance </td>
             <td th:text=${participant.organisation}> Organisation </td>
             <td th:text=${participant.observations}> Observations </td>
-            <td th:text=${participant.evenement}> Evenement </td>
-            <!--
+            <td th:text=${participant.evenement.titre}> Evenement </td>
+
             <td>
-                <a th:href="@{'/edit_participant/' + ${participant.id}}">Modifier</a>
+               <!-- <a th:href="@{'/participant/edit/' + ${participant.id}}">Modifier</a> -->
                 &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/delete_participant/' + ${participant.id}}">Supprimer</a>
+                <a th:href="@{'/participant/delete/' + ${participant.id}}">Supprimer</a>
             </td>
-            -->
+
         </tbody>
     </table>
 </div>
