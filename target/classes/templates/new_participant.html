@@ -96,6 +96,11 @@
         <label>Evenement:</label>
         <select name="event" th:action="@{/event}" th:object="${evenement}"
                 method="get">
+            <script>
+                for (let i = 0; i < "listEvents".length; i++) {
+                text += cars[i] + "<br>";
+                }
+            </script>
         </select>
 
         //click to submit

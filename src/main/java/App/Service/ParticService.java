@@ -1,9 +1,8 @@
 package App.Service;
 
 
-import App.Model.Evenement;
+
 import App.Model.Participant;
-import App.Repository.EventRepository;
 import App.Repository.ParticRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,4 +32,5 @@ public class ParticService {
     public void delete(long id) {
         repo.deleteById(id);
     }
+
 }

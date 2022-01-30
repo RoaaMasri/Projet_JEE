@@ -12,7 +12,7 @@ public class Participant {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Long idParticipant;
+    private Long id;
     @Column(name = "nom", nullable = false)
     private String nom;
     @Column(name = "prenom", nullable = false)
@@ -27,7 +27,7 @@ public class Participant {
     private String observations;
 
 
-    @ManyToOne @JoinColumn(name="idEvenement", nullable=false)
+    @ManyToOne @JoinColumn(name="id_event", nullable=false)
     private Evenement evenement;
 
 
@@ -49,7 +49,7 @@ public class Participant {
 
 
     public Long getId() {
-        return idParticipant;
+        return id;
     }
 
     public String getNom() {
@@ -126,7 +126,7 @@ public class Participant {
     @Override
     public String toString() {
         return "Participant{" +
-                "id=" + idParticipant +
+                "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
