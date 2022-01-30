@@ -24,6 +24,14 @@ public class AppController {
     @Autowired
     private ParticService pservice;
 
+
+    //Home Page
+    @RequestMapping("/")
+    public String viewHomePage(Model model) {
+        return "index";
+    }
+
+
     //Event Controller
     @RequestMapping("/event")
     public String viewEventHomePage(Model model) {
