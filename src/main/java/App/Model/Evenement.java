@@ -35,10 +35,10 @@ public class Evenement {
     private String organisateur;
     @Column(name = "type_even")
     private String type_even;
-/*
+
     @OneToMany(mappedBy = "evenement", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Participant> participants = new ArrayList<>();
-*/
+
 
 
     //contractures
@@ -130,7 +130,7 @@ public class Evenement {
     public void setType_even(String type_even) {
         this.type_even = type_even;
     }
-/*
+
     public List<Participant> getParticipants() {
         return participants;
     }
@@ -138,7 +138,7 @@ public class Evenement {
     public void setParticipants(List<Participant> participants) {
         this.participants = participants;
     }
-*/
+
 
     //equals hashCode toString
     @Override
@@ -173,10 +173,10 @@ public class Evenement {
                 ", description='" + description + '\'' +
                 ", organisateur='" + organisateur + '\'' +
                 ", type_even='" + type_even + '\'' +
-                /*this.participants+*/
+                this.participants+
                 '}';
     }
-/*
+
     // add particepant to event
     public void addParticipant(Participant participant){
         participants.add(participant);
@@ -188,5 +188,4 @@ public class Evenement {
         participant.setEvenement(null);
     }
 }
-*/
-}
+

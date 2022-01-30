@@ -1,7 +1,9 @@
 package App.Controller;
 
 import App.Model.Evenement;
+import App.Model.Participant;
 import App.Service.EventService;
+import App.Service.ParticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +21,12 @@ public class AppController {
     @Autowired
     private EventService service;
 
+    @Autowired
+    private ParticService pservice;
 
+    //Event Controller
     @RequestMapping("/event")
-    public String viewHomePage(Model model) {
+    public String viewEventHomePage(Model model) {
         List<Evenement> listEvents = service.listAll();
         model.addAttribute("listEvents", listEvents);
 
@@ -45,7 +50,7 @@ public class AppController {
 
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditEventPage(@PathVariable(name = "id") long id) {
-        ModelAndView mav = new ModelAndView("edit_product");
+        ModelAndView mav = new ModelAndView("edit_event");
         Evenement evenement = service.get(id);
         mav.addObject("evenement", evenement);
 
@@ -57,4 +62,46 @@ public class AppController {
         service.delete(id);
         return "redirect:/event";
     }
+
+
+    //Participant Controller
+
+    @RequestMapping("/participant")
+    public String viewParticipantHomePage(Model model) {
+        List<Participant> listParticipants = pservice.listAll();
+        model.addAttribute("listParticipants", listParticipants);
+
+        return "participant_page";
+    }
+
+    @RequestMapping("/new_participant")
+    public String showNewParticipantPage(Model model) {
+        Participant participant = new Participant();
+        model.addAttribute("participant", participant);
+
+        return "new_participant";
+    }
+
+    @RequestMapping(value = "/save_participant", method = RequestMethod.POST)
+    public String saveParticipant(@ModelAttribute("participant") Participant participant) {
+        pservice.save(participant);
+        return "redirect:/participant";
+    }
+/*
+    @RequestMapping("/edit_participant/{id}")
+    public ModelAndView showEditParticPage(@PathVariable(name = "id") long id) {
+        ModelAndView mav = new ModelAndView("edit_participant");
+        Participant participant = pservice.get(id);
+        mav.addObject("participant", participant);
+
+        return mav;
+    }
+
+    @RequestMapping("/delete_participant/{id}")
+    public String deletePartic(@PathVariable(name = "id") long id) {
+        pservice.delete(id);
+        return "redirect:/participant";
+    }
+
+ */
 }
