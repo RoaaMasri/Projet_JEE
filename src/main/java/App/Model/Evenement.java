@@ -25,7 +25,7 @@ public class Evenement {
     private String theme;
     @Column(name = "date_debut", nullable = false)
     private String date_debut;
-    @Column(name = "duree")
+    @Column(name = "duree", nullable = false)
     private String duree;
     @Column(name = "nb_part_max", nullable = false)
     private int nb_part_max;
