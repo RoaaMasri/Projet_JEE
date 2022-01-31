@@ -44,8 +44,7 @@ public class AppController {
 
     //for inscription : to display page
     @RequestMapping("/ConnexionPage")
-    public String connexion(@RequestParam(name="name", required=false) String name, Model model) {
-        model.addAttribute("name", name);
+    public String connexion(Model model) {
         return "connexion";
     }
 

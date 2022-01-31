@@ -1,3 +1,14 @@
+/**
+
+ * Participant class helps listens to the user request to create
+   new participant with the event he is attending to go to
+
+ * And output a table "participant" in database
+
+ * @author Roaa Masri
+
+ */
+
 package App.Model;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,6 +20,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "participant")
 public class Participant {
+
+    //defining Participant class variables
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -26,12 +40,16 @@ public class Participant {
     @Column(name = "observations")
     private String observations;
 
-
+    /**
+     * Creating the relation manyToOne between Participant class and Event class
+     * One participant can go only to one event
+     * This relation sent event_id into participant table when he chooses an event
+     */
     @ManyToOne @JoinColumn(name="id_event", nullable=false)
     private Evenement evenement;
 
 
-    //contractures
+    //Class contractures
     public Participant(){
 
     }
@@ -45,8 +63,7 @@ public class Participant {
         this.observations = observations;
     }
 
-    //Getters and setters
-
+    //Getters and setters methods
 
     public Long getId() {
         return id;
@@ -107,6 +124,7 @@ public class Participant {
     public void setEvenement(Evenement evenement) {
         this.evenement = evenement;
     }
+
 
     //equals hashCode toString
 

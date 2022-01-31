@@ -1,3 +1,13 @@
+/**
+
+ * Evenement class helps listens to the user request to create new events
+
+ * And output a table "enenement" in database
+
+ * @author Roaa Masri
+
+ */
+
 package App.Model;
 
 
@@ -15,6 +25,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "evenement")
 public class Evenement {
+
+
+    //defining Event class variables
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,12 +49,17 @@ public class Evenement {
     @Column(name = "type_even")
     private String type_even;
 
+    /**
+     * Creating the relation oneToMany between Event class and Participant class
+     * One event can have many participants
+     */
     @OneToMany(mappedBy = "evenement", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Participant> participants = new ArrayList<>();
 
 
 
-    //contractures
+    //Class contractures
+
     public Evenement(){
 
     }
@@ -59,9 +77,7 @@ public class Evenement {
     }
 
 
-
-//Getters and setters
-
+    //Getters and setters methods
 
     public long getId() {
         return id;
@@ -140,7 +156,7 @@ public class Evenement {
     }
 
 
-    //equals hashCode toString
+    //equals hashCode toString methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -177,12 +193,14 @@ public class Evenement {
                 '}';
     }
 
-    // add particepant to event
+
+    //This method add participant to event
     public void addParticipant(Participant participant){
         participants.add(participant);
         participant.setEvenement(this);
     }
 
+    //This method delete participant from event
     public void removeParticipant(Participant participant){
         participants.remove(participant);
         participant.setEvenement(null);
