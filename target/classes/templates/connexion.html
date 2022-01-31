@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Connexion for Admin</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<form action="#" th:action="@{/seConnecter}" th:object="${evenement}"
+      method="post">
+  <h1>Se connecter</h1>
+
+  <br/><br/>
+  <input type="email" placeholder="Email">
+  <input type="password" placeholder="mot de passe">
+
+  <div align="center">
+    <button type="submit"> Se connecter </button>
+  </div>
+</form>
+
+</body>
+</html>

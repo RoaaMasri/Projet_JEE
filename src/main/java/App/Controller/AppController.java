@@ -9,10 +9,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -28,7 +25,7 @@ public class AppController {
     private ParticService pservice;
 
 
-    //Home Page
+    //localhost page
     @RequestMapping(" ")
     public String homePage(Model model) {
         return "index";
@@ -39,14 +36,37 @@ public class AppController {
         return "index";
     }
 
+    //Home Page
+    @RequestMapping("/homePage")
+    public String appHomePage(Model model) {
+        return "home";
+    }
+
+    //for inscription : to display page
+    @RequestMapping("/ConnexionPage")
+    public String connexion(@RequestParam(name="name", required=false) String name, Model model) {
+        model.addAttribute("name", name);
+        return "connexion";
+    }
+
+    //to return on page home
+    @RequestMapping(value = "/seConnecter", method = RequestMethod.POST)
+    public String viewEventHome(@RequestParam(name="name", required=false) String name, Model model) {
+        model.addAttribute("name", name);
+        return "home";
+    }
+
+
 
     //Event Controller
     @RequestMapping("/event")
+    //@RequestMapping("/seConnecter")
     public String viewEventHomePage(Model model) {
         List<Evenement> listEvents = service.listAll();
         model.addAttribute("listEvents", listEvents);
         return "event_page";
     }
+
 
     @RequestMapping("/new")
     public String showNewEvenementPage(Model model) {
