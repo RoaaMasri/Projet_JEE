@@ -31,7 +31,6 @@ public class AppController {
      * This function is using RequestMapping annotation
      * It redirects the web page to "index page" when the web requests is empty
      * @param model
-     * @return
      */
     @RequestMapping(" ")
     public String homePage(Model model) {
@@ -42,7 +41,6 @@ public class AppController {
      * This function is using RequestMapping annotation
      * It redirects the web page to "index page" when the web requests is "/"
      * @param model
-     * @return
      */
     @RequestMapping("/")
     public String viewHomePage(Model model) {
@@ -54,7 +52,6 @@ public class AppController {
      * This function is using RequestMapping annotation
      * It redirects the web page to "Home page" when the web requests is "/homePage"
      * @param model
-     * @return
      */
     @RequestMapping("/homePage")
     public String appHomePage(Model model) {

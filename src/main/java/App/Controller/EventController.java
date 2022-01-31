@@ -1,3 +1,11 @@
+/**
+
+ * EventController class defines all the RequestMapping to redirect the app to the Event's pages
+
+ * @author Roaa Masri
+
+ */
+
 package App.Controller;
 
 import App.Model.Evenement;
@@ -19,10 +27,19 @@ import java.util.List;
 @EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 public class EventController {
 
+    /**
+     * Creating EventService variable with the @autowired annotation
+     * this variable redirects the information from the Controller to the Repository(DAO)
+     */
     @Autowired
     private EventService service;
 
 
+    /**
+     * This function is using RequestMapping annotation
+     * It redirects the web page to "event_page" when the web requests is "/event"
+     * @param model
+     */
     @RequestMapping("/event")
     public String viewEventHomePage(Model model) {
         List<Evenement> listEvents = service.listAll();
@@ -30,7 +47,12 @@ public class EventController {
         return "event_page";
     }
 
-
+    /**
+     * This function is using RequestMapping annotation
+     * It redirects the web page to "new_event" when the web requests is "/new"
+     * It goes to the new_event page to add an event
+     * @param model
+     */
     @RequestMapping("/new")
     public String showNewEvenementPage(Model model) {
         Evenement evenement = new Evenement();
@@ -39,6 +61,12 @@ public class EventController {
         return "new_event";
     }
 
+    /**
+     * This function is using RequestMapping annotation
+     * It redirects the web page to "/event" when the web requests is "/save"
+     * It goes back to the event page after saving or editing an event
+     * @param evenement
+     */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveEvent(@ModelAttribute("evenement") Evenement evenement) {
         service.save(evenement);
@@ -46,6 +74,12 @@ public class EventController {
         return "redirect:/event";
     }
 
+    /**
+     * This function is using RequestMapping annotation
+     * It redirects the web page to "edit_event" when the web requests is "/edit/{id}"
+     * It goes to the edit_event page to edit the event information
+     * @param id
+     */
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditEventPage(@PathVariable(name = "id") long id) {
         ModelAndView mav = new ModelAndView("edit_event");
@@ -55,6 +89,12 @@ public class EventController {
         return mav;
     }
 
+    /**
+     * This function is using RequestMapping annotation
+     * It redirects the web page to "/event" when the web requests is /delete/{id}"
+     * It goes back to the event page after deleting an event
+     * @param id
+     */
     @RequestMapping("/delete/{id}")
     public String deleteEvent(@PathVariable(name = "id") long id) {
         service.delete(id);

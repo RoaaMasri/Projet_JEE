@@ -1,3 +1,10 @@
+/**
+
+ * LoginController class defines all the RequestMapping to redirect the app to the connection's page
+
+ * @author Adrienne Zebaze
+
+ */
 package App.Controller;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
